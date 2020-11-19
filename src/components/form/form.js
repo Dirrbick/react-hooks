@@ -33,9 +33,6 @@ function ToDoForm(props) {
     props.getData(values);
   }
 
-  // useEffect( () => {
-  //   console.log(task, person, difficulty)
-  // }, [task, person, difficulty]);
 
   return (
     <div>
