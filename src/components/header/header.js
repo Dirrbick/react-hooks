@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "react-bootstrap/Navbar";
 
 function ToDoHeader() {
-  return <h1>this is the header</h1>;
+  return (
+    <Navbar bg="dark" varient="dark">
+      <Navbar.Brand as="h1">ToDo List Manager</Navbar.Brand>
+    </Navbar>
+  );
 }
 
 export default ToDoHeader;
