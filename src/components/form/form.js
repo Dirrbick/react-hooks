@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function ToDoForm(props) {
   const [task, setTask] = useState("");
@@ -28,46 +29,49 @@ function ToDoForm(props) {
     const values = {
       task,
       person,
-      difficulty
+      difficulty,
     };
     props.getData(values);
   }
 
-
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <h1>Add To Do Item</h1>
-        <Form.Group controlId="form-basic-todo">
-          <Form.Label>To Do Item</Form.Label>
-          <Form.Control
-            onChange={handleTaskInput}
-            value={task}
-            type="text"
-            placeholder="Item Details"
-          />
-        </Form.Group>
-        <Form.Group controlId="form-basic-assigned">
-          <Form.Label>Assigned To</Form.Label>
-          <Form.Control
-            onChange={handlePersonInput}
-            value={person}
-            type="text"
-            placeholder="Assignee Name"
-          />
-        </Form.Group>
-        <Form.Group controlId="form-basic-range">
-          <Form.Control
-            onChange={handleDifficulty}
-            value={difficulty}
-            type="range"
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Add Item
-        </Button>
-      </Form>
-    </div>
+    <Card style={{ width: "22rem" }}>
+      <Card.Body>
+        <Form onSubmit={handleSubmit}>
+          <h3>Add To Do Item</h3>
+          <Form.Group controlId="form-basic-todo">
+            <Form.Label>To Do Item</Form.Label>
+            <Form.Control
+              onChange={handleTaskInput}
+              value={task}
+              type="text"
+              placeholder="Item Details"
+            />
+          </Form.Group>
+          <Form.Group controlId="form-basic-assigned">
+            <Form.Label>Assigned To</Form.Label>
+            <Form.Control
+              onChange={handlePersonInput}
+              value={person}
+              type="text"
+              placeholder="Assignee Name"
+            />
+          </Form.Group>
+          <Form.Group controlId="form-basic-range">
+            <Form.Control
+              onChange={handleDifficulty}
+              value={difficulty}
+              type="range"
+              min="1"
+              max="5"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Add Item
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }
 

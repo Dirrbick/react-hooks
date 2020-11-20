@@ -2,13 +2,13 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-function ToDoNavbar(props) {
+function ToDoNavbar() {
   return (
-    <div>
-      <Navbar varient="dark" bg="dark">
+    <Navbar varient="light" bg="primary">
+      <Nav>
         <Nav.Link href="#home">Home</Nav.Link>
-      </Navbar>
-    </div>
+      </Nav>
+    </Navbar>
   );
 }
 
