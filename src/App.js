@@ -13,14 +13,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [values, setValues] = useState([]);
 
+
   function getFormData(data) {
-    setValues([...values, data]);
+    setValues([...values, data])
   }
   //mark item as complete()
+// this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
+  function completeHandler(id) {
+    console.log(id)
+    const item = values.filter(i => i.id === id)[0] || {};
+    console.log(item)
+    if (item.id) {
+      item.complete = true;
+    }
+    console.log(item)
+    
+    }
   return (
     <>
       <ToDoNavbar />
-      <br/>
+      <br />
       <Container>
         <Row>
           <Col>
@@ -32,8 +44,12 @@ function App() {
       <br />
       <Container>
         <Row>
-          <Col><ToDoForm getData={getFormData} /></Col>
-          <Col><ToDoList values={values} /></Col>
+          <Col>
+            <ToDoForm getData={getFormData} />
+          </Col>
+          <Col>
+            <ToDoList values={values} completeHandler={completeHandler} />
+          </Col>
           <Col xs={2}></Col>
         </Row>
       </Container>
