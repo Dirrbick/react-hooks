@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,7 +8,7 @@ function ToDoForm(props) {
   const [task, setTask] = useState("");
   const [person, setPerson] = useState("");
   const [difficulty, setDifficulty] = useState(1);
-  const [complete, setComplete] = useState(false);
+  const [complete] = useState(false);
   const [id, setId] = useState();
 
   function handleTaskInput(e) {
@@ -26,7 +26,6 @@ function ToDoForm(props) {
     e.preventDefault();
     setDifficulty(e.target.value);
   }
-
 
   function handleSubmit(e) {
     e.preventDefault();

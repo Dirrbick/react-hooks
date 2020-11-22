@@ -45,7 +45,7 @@ function App() {
       <Container>
         <Row>
           <Col>
-            <ToDoForm getData={getFormData} />
+            <ToDoForm getData={getFormData} completeHandler={completeHandler} />
           </Col>
           <Col>
             <ToDoList values={values} completeHandler={completeHandler} />
