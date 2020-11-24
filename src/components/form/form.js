@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,7 +9,7 @@ function ToDoForm(props) {
   const [person, setPerson] = useState("");
   const [difficulty, setDifficulty] = useState(1);
   const [complete] = useState(false);
-  const [id, setId] = useState();
+  const [_id, setId] = useState();
 
   function handleTaskInput(e) {
     e.preventDefault();
@@ -19,22 +19,23 @@ function ToDoForm(props) {
   function handlePersonInput(e) {
     e.preventDefault();
     setPerson(e.target.value);
-    setId(Math.random())
   }
 
   function handleDifficulty(e) {
     e.preventDefault();
     setDifficulty(e.target.value);
+    setId(Math.random());
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     const values = {
       task,
       person,
       difficulty,
       complete,
-      id
+      _id
     };
     props.getData(values);
   }
