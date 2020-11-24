@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ToDoForm from "./components/form/form.js";
 import ToDoNavbar from "./components/navbar/navbar.js";
 import ToDoHeader from "./components/header/header.js";
@@ -20,15 +20,13 @@ function App() {
   //mark item as complete()
 // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
   function completeHandler(id) {
-    console.log(id)
-    const item = values.filter(i => i.id === id)[0] || {};
-    console.log(item)
-    if (item.id) {
-      item.complete = true;
-    }
-    console.log(item)
-    
-    }
+    let newValue = values.map((item) => item._id === id ? { ...item, complete: true } : item)
+
+    setValues(newValue);
+
+  }
+
+
   return (
     <>
       <ToDoNavbar />
@@ -44,6 +42,7 @@ function App() {
       <br />
       <Container>
         <Row>
+          
           <Col>
             <ToDoForm getData={getFormData} completeHandler={completeHandler} />
           </Col>

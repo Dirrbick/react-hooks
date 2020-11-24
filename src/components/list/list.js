@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Toast from "react-bootstrap/Toast";
 import Badge from "react-bootstrap/Badge";
@@ -19,14 +19,14 @@ function ToDoList(props) {
 
   return (
     <>
-      {props.values.map((item, idx) => (
-        <Toast key={item.id}>
+      {props.values.map((item) => (
+        <Toast key={item._id}>
           <Toast.Header>
             <Badge
               pill
               style={styles.pill}
               variant={item.complete ? "danger" : "success"}
-              onClick={() => props.completeHandler(item.id)}
+              onClick={() => props.completeHandler(item._id)}
             >
               {!item.complete ? "Pending" : "Complete"}
             </Badge>
@@ -35,7 +35,6 @@ function ToDoList(props) {
           <Toast.Body>{item.task}</Toast.Body>
         </Toast>
       ))}
-      ;
     </>
   );
 }
