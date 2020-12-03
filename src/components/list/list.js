@@ -10,6 +10,10 @@ function ToDoList(props) {
     },
   };
 
+  // useEffect( () => {
+
+  // }, []);
+
   return (
     <>
       {props.values.map((item) => (
@@ -23,9 +27,13 @@ function ToDoList(props) {
             >
               {!item.complete ? "Pending" : "Complete"}
             </Badge>
-            <strong className="mr-auto">{item.person}</strong>
+            <strong className="mr-auto">{item.assignee}</strong>
           </Toast.Header>
-          <Toast.Body>{item.task}</Toast.Body>
+          <Toast.Body>
+            <span>{item.text}</span>
+            <span>difficulty:{item.difficulty}</span>
+          </Toast.Body>
+          
         </Toast>
       ))}
     </>
