@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ToDoForm from "./components/form/form.js";
 import ToDoNavbar from "./components/navbar/navbar.js";
 import ToDoHeader from "./components/header/header.js";
@@ -15,7 +15,7 @@ function App() {
   const API = process.env.REACT_APP_API;
   const [values, setValues] = useState([]);
 
-  const handleAxiosGet = async () => {
+  const handleAxiosGet = useCallback( async () => {
     try {
       let request = await axios({
         method: 'get',
@@ -28,11 +28,11 @@ function App() {
     catch(e) {
       console.log(e.message)
     };
-  };
+  }, []);
 
   useEffect( () => {
     handleAxiosGet();
-  }, []);
+  }, [handleAxiosGet]);
   
 
   const handleAxiosPost = async (input) => {
@@ -42,6 +42,7 @@ function App() {
         url: `${API}/todo`,
         data: input,
       });
+      return request;
     }
     catch(e) {
       console.warn(e.message)
@@ -52,7 +53,7 @@ function App() {
 
   useEffect( () => {
     handleAxiosGet();
-  }, [values]);
+  }, [setValues, handleAxiosGet]);
 
   //mark item as complete()
   // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
@@ -66,13 +67,14 @@ function App() {
         url: `${API}/todo/${id}`,
         data: newValue._id.complete = true,
       });
+      return request;
     };
 
   };
 
-  const handleAxiosDelete = async () => {
+  // const handleAxiosDelete = async () => {
 
-  };
+  // };
 
   return (
     <>
