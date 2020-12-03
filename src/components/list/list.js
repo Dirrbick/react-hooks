@@ -17,7 +17,7 @@ function ToDoList(props) {
   return (
     <>
       {props.values.map((item) => (
-        <Toast key={item._id}>
+        <Toast key={item._id} onClose={ () => props.deleteHandler(item._id)}>
           <Toast.Header>
             <Badge
               pill
