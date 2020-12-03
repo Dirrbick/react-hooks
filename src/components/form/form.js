@@ -5,40 +5,37 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 function ToDoForm(props) {
-  const [task, setTask] = useState("");
-  const [person, setPerson] = useState("");
+  const [text, setText] = useState("");
+  const [assignee, setAssignee] = useState("");
   const [difficulty, setDifficulty] = useState(1);
   const [complete] = useState(false);
-  const [_id, setId] = useState();
 
-  function handleTaskInput(e) {
+  function handleTextInput(e) {
     e.preventDefault();
-    setTask(e.target.value);
+    setText(e.target.value);
   }
 
-  function handlePersonInput(e) {
+  function handleAssigneeInput(e) {
     e.preventDefault();
-    setPerson(e.target.value);
+    setAssignee(e.target.value);
   }
 
   function handleDifficulty(e) {
     e.preventDefault();
     setDifficulty(e.target.value);
-    setId(Math.random());
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     
     const values = {
-      task,
-      person,
+      text,
+      assignee,
       difficulty,
-      complete,
-      _id
+      complete
     };
-    props.getData(values);
-  }
+    props.handlePost(values);
+  };
 
   return (
     <Card style={{ width: "22rem" }}>
@@ -48,8 +45,8 @@ function ToDoForm(props) {
           <Form.Group controlId="form-basic-todo">
             <Form.Label>To Do Item</Form.Label>
             <Form.Control
-              onChange={handleTaskInput}
-              value={task}
+              onChange={handleTextInput}
+              value={text}
               type="text"
               placeholder="Item Details"
             />
@@ -57,8 +54,8 @@ function ToDoForm(props) {
           <Form.Group controlId="form-basic-assigned">
             <Form.Label>Assigned To</Form.Label>
             <Form.Control
-              onChange={handlePersonInput}
-              value={person}
+              onChange={handleAssigneeInput}
+              value={assignee}
               type="text"
               placeholder="Assignee Name"
             />
