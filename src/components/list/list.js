@@ -10,9 +10,9 @@ function ToDoList(props) {
     },
   };
 
-  useEffect( () => {
+  // useEffect( () => {
 
-  }, []);
+  // }, []);
 
   return (
     <>
