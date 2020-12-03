@@ -9,9 +9,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from 'axios';
+import axios from "axios";
 
 function App() {
+  // const API = process.env.REACT_APP_API;
   const [values, setValues] = useState([]);
 
   const handleAxiosGet = async () => {
@@ -36,39 +37,50 @@ function App() {
         url: 'https://api-server-401-javascript.herokuapp.com/api/v1/todo',
         data: input,
       });
+      handleAxiosGet();
+      return request;
     }
     catch(e) {
       console.warn(e.message)
     };
-
-    // setValues([...values, data])
   };
 
   useEffect( () => {
     handleAxiosGet();
   }, []);
 
-  useEffect( () => {
-    handleAxiosGet();
-  }, [values]);
+  // useEffect( () => {
+  //   handleAxiosGet();
+  // }, [setValues]);
 
   //mark item as complete()
   // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
   const handleAxiosPut = async (id) => {
 
-    let newValue = values.filter( (item) => item._id === id);
-
+    let newValue = values.filter( (item) => item._id === id)[0];
+    
     if (newValue._id) {
       let request = await axios({
         method: 'put',
-        url: `https://api-js401.herokuapp.com/api/v1/todo/${id}`,
-        data: newValue._id.complete = true,
+        url: `https://api-server-401-javascript.herokuapp.com/api/v1/todo/${id}`,
+        data: {complete: true},
       });
+      handleAxiosGet();
+      return request;
     };
 
   };
 
-  const handleAxiosDelete = async () => {
+  const handleAxiosDelete = async (id) => {
+
+    // let deleteValue = values.filter( item => )
+
+    let request = await axios({
+      method: 'delete',
+      url: `https://api-server-401-javascript.herokuapp.com/api/v1/todo/${id}`,
+    });
+    handleAxiosGet();
+    return request;
 
   };
 
@@ -92,7 +104,11 @@ function App() {
             <ToDoForm handlePost={handleAxiosPost} completeHandler={handleAxiosPut} />
           </Col>
           <Col>
-            <ToDoList values={values} completeHandler={handleAxiosPut} />
+            <ToDoList 
+              values={values} 
+              completeHandler={handleAxiosPut}
+              deleteHandler={handleAxiosDelete}
+            />
           </Col>
           <Col xs={2}></Col>
         </Row>
