@@ -18,7 +18,7 @@ function App() {
     try {
       let request = await axios({
         method: 'get',
-        url: 'https://api-js401.herokuapp.com/api/v1/todo'
+        url: 'https://api-server-401-javascript.herokuapp.com/api/v1/todo'
       });
 
       let todos = request.data.results;
@@ -29,16 +29,11 @@ function App() {
     };
   };
 
-  useEffect( () => {
-    handleAxiosGet();
-  }, []);
-  
-
   const handleAxiosPost = async (input) => {
     try{
       let request = await axios({
         method: 'post',
-        url: 'https://api-js401.herokuapp.com/api/v1/todo',
+        url: 'https://api-server-401-javascript.herokuapp.com/api/v1/todo',
         data: input,
       });
     }
@@ -51,7 +46,11 @@ function App() {
 
   useEffect( () => {
     handleAxiosGet();
-  }, [handleAxiosPost()]);
+  }, []);
+
+  useEffect( () => {
+    handleAxiosGet();
+  }, [values]);
 
   //mark item as complete()
   // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
