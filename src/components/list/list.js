@@ -30,10 +30,9 @@ function ToDoList(props) {
             <strong className="mr-auto">{item.assignee}</strong>
           </Toast.Header>
           <Toast.Body>
-            <span>{item.text}</span>
-            <span>difficulty:{item.difficulty}</span>
+            {item.text}
+            difficulty:{item.difficulty}
           </Toast.Body>
-          
         </Toast>
       ))}
     </>

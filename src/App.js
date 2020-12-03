@@ -12,14 +12,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 function App() {
-  // const API = process.env.REACT_APP_API;
+  const API = process.env.REACT_APP_API;
   const [values, setValues] = useState([]);
 
   const handleAxiosGet = async () => {
     try {
       let request = await axios({
         method: 'get',
-        url: 'https://api-server-401-javascript.herokuapp.com/api/v1/todo'
+        url: `${API}/todo`
       });
 
       let todos = request.data.results;
@@ -34,7 +34,7 @@ function App() {
     try{
       let request = await axios({
         method: 'post',
-        url: 'https://api-server-401-javascript.herokuapp.com/api/v1/todo',
+        url: `${API}/todo`,
         data: input,
       });
       handleAxiosGet();
@@ -62,7 +62,7 @@ function App() {
     if (newValue._id) {
       let request = await axios({
         method: 'put',
-        url: `https://api-server-401-javascript.herokuapp.com/api/v1/todo/${id}`,
+        url: `${API}/todo/${id}`,
         data: {complete: true},
       });
       handleAxiosGet();
@@ -77,7 +77,7 @@ function App() {
 
     let request = await axios({
       method: 'delete',
-      url: `https://api-server-401-javascript.herokuapp.com/api/v1/todo/${id}`,
+      url: `${API}/todo/${id}`,
     });
     handleAxiosGet();
     return request;
