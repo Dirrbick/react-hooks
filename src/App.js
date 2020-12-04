@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import ToDoForm from "./components/form/form.js";
 import ToDoNavbar from "./components/navbar/navbar.js";
 import ToDoHeader from "./components/header/header.js";
@@ -48,14 +48,9 @@ function App() {
 
   useEffect( () => {
     handleAxiosGet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect( () => {
-  //   handleAxiosGet();
-  // }, [setValues]);
-
-  //mark item as complete()
-  // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
   const handleAxiosPut = async (id) => {
 
     let newValue = values.filter( (item) => item._id === id)[0];
@@ -74,8 +69,6 @@ function App() {
 
   const handleAxiosDelete = async (id) => {
 
-    // let deleteValue = values.filter( item => )
-
     let request = await axios({
       method: 'delete',
       url: `${API}/todo/${id}`,
@@ -92,7 +85,7 @@ function App() {
       <Container>
         <Row>
           <Col>
-            <ToDoHeader />
+            <ToDoHeader total={values}/>
           </Col>
         </Row>
       </Container>

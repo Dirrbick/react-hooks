@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import {SettingsContext} from "../../context/settings/context.js";
 import {PaginatedList} from 'react-paginated-list';
 
@@ -17,11 +17,12 @@ function ToDoList(props) {
     },
   };
 
-  const sortedList = props.values.sort((a, b) => a.difficulty - b.difficulty)
+  const sortedList = props.values.sort((a, b) => a.difficulty - b.difficulty);
+  const filteredList = sortedList.filter( (item) => !item.complete);
 
   return (
     <PaginatedList
-      list={sortedList}
+      list={filteredList}
       itemsPerPage={maxItems}
       renderList={ (list) => (
         <>
