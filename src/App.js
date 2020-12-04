@@ -3,6 +3,7 @@ import ToDoForm from "./components/form/form.js";
 import ToDoNavbar from "./components/navbar/navbar.js";
 import ToDoHeader from "./components/header/header.js";
 import ToDoList from "./components/list/list.js";
+import SettingsContext from "./context/settings/context.js";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -26,7 +27,7 @@ function App() {
       setValues(todos);
     }
     catch(e) {
-      console.log(e.message)
+      console.warn(e.message)
     };
   };
 
@@ -50,7 +51,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   const handleAxiosPut = async (id) => {
 
     let newValue = values.filter( (item) => item._id === id)[0];
@@ -69,8 +69,6 @@ function App() {
 
   const handleAxiosDelete = async (id) => {
 
-    // let deleteValue = values.filter( item => )
-
     let request = await axios({
       method: 'delete',
       url: `${API}/todo/${id}`,
@@ -81,21 +79,20 @@ function App() {
   };
 
   return (
-    <>
+    <SettingsContext>
       <ToDoNavbar />
       <br />
       <Container>
         <Row>
           <Col>
-            <ToDoHeader />
+            <ToDoHeader total={values}/>
           </Col>
         </Row>
       </Container>
       <br />
       <br />
       <Container>
-        <Row>
-          
+        <Row> 
           <Col>
             <ToDoForm handlePost={handleAxiosPost} completeHandler={handleAxiosPut} />
           </Col>
@@ -109,7 +106,7 @@ function App() {
           <Col xs={2}></Col>
         </Row>
       </Container>
-    </>
+    </SettingsContext>
   );
 }
 
