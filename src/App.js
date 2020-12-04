@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ToDoForm from "./components/form/form.js";
 import ToDoNavbar from "./components/navbar/navbar.js";
 import ToDoHeader from "./components/header/header.js";
 import ToDoList from "./components/list/list.js";
+import SettingsContext from "./context/settings/context.js";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -26,7 +27,7 @@ function App() {
       setValues(todos);
     }
     catch(e) {
-      console.log(e.message)
+      console.warn(e.message)
     };
   };
 
@@ -85,7 +86,7 @@ function App() {
   };
 
   return (
-    <>
+    <SettingsContext>
       <ToDoNavbar />
       <br />
       <Container>
@@ -98,8 +99,7 @@ function App() {
       <br />
       <br />
       <Container>
-        <Row>
-          
+        <Row> 
           <Col>
             <ToDoForm handlePost={handleAxiosPost} completeHandler={handleAxiosPut} />
           </Col>
@@ -113,7 +113,7 @@ function App() {
           <Col xs={2}></Col>
         </Row>
       </Container>
-    </>
+    </SettingsContext>
   );
 }
 
