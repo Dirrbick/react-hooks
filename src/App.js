@@ -47,14 +47,10 @@ function App() {
 
   useEffect( () => {
     handleAxiosGet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect( () => {
-  //   handleAxiosGet();
-  // }, [setValues]);
 
-  //mark item as complete()
-  // this is from looking at johns code... just trying to understand how to make it work... will be changing at a later time...
   const handleAxiosPut = async (id) => {
 
     let newValue = values.filter( (item) => item._id === id)[0];

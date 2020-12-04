@@ -29,9 +29,9 @@ function ToDoList(props) {
             </Badge>
             <strong className="mr-auto">{item.assignee}</strong>
           </Toast.Header>
-          <Toast.Body>
+          <Toast.Body classname='textBody'>
             {item.text}
-            difficulty:{item.difficulty}
+            <small className='difficulty'>difficulty:{item.difficulty}</small>
           </Toast.Body>
         </Toast>
       ))}
