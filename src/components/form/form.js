@@ -61,6 +61,7 @@ function ToDoForm(props) {
             />
           </Form.Group>
           <Form.Group controlId="form-basic-range">
+            <Form.Label>Difficulty Level</Form.Label>
             <Form.Control
               onChange={handleDifficulty}
               value={difficulty}
